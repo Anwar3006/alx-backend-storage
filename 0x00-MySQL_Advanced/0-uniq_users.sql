@@ -1,4 +1,4 @@
-
+-- Create a table named users
 CREATE TABLE IF NOT EXISTS `users`(
     id int NOT NULL AUTO_INCREMENT,
     email VARCHAR(255) NOT NULL UNIQUE,
