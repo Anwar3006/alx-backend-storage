@@ -2,11 +2,12 @@
 DELIMITER $$
 
 CREATE TRIGGER reset_valid_email
-AFTER INSERT
+BEFORE UPDATE
 ON users FOR EACH ROW
 BEGIN
-    UPDATE valid_email
-        SET valid_email = 1
-        WHERE email = NEW.email
+    IF OLD.email != NEW.email THEN
+        SET NEW.valid_email = 0
+    ELSE
+        SET NEW.valid_email = NEW.valid_email
 END $$
-DELIMITER;
+DELIMITER ;
